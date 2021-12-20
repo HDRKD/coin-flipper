@@ -1,0 +1,143 @@
+<html>
+
+    <!-- The header (things that load before the actual page) -->
+    <head>
+        
+        <!-- Information about the page -->
+        <title>Coin flipper</title>
+        <meta name='description' content='An app that flips a coin'>
+
+        <!-- Make the page look good on touch devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Download fonts from Google -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+        
+        <!-- Change the appearance of elements on the page -->
+        <style>
+
+            body {
+                background-color: #5072E8;
+                color: white;
+                font-family: 'Concert One', cursive;;
+
+                /* Make everything in the center: */
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+            }
+
+            #coin {
+                background: linear-gradient(45deg, #CF9523, #ebbe18);
+                border: 2px solid #a5852a;
+                font-size: 30px;
+                height: 150px;
+                width: 150px;
+                padding: 10px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-bottom: 50px;
+                box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+                font-family: 'Cinzel', serif;
+                color: rgba(0,0,0,0.4);
+            }
+
+            h1 {
+                font-size: 4em;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            ul {
+                font-size: 2.5em;
+            }
+
+            table {
+                font-size: 2em;
+            }
+
+        </style>
+
+    </head>
+
+
+    <!-- The main page -->
+    <body>
+
+        <!-- The title of the page -->
+        <h1>Coin flipper</h1>
+
+        <!-- The coin -->
+        <div id='coin' onclick='handleClick()'></div>
+
+        <!-- The previous flips heading -->
+        <h2>Previous flips</h2>
+
+        <!-- The table of previous results -->
+        <table>
+            <tr>
+                <td>Number of 'heads':</td>
+                <td id='heads-results'>0</td>
+            </tr>
+            <tr>
+                <td>Number of 'tails':</td>
+                <td id='tails-results'>0</td>
+            </tr>
+        </table>
+
+    </body>
+
+
+    <!-- All the code to make things work -->
+    <script>
+
+        // The function that fires when the coin is clicked:
+        function handleClick() {
+
+            // Generate a random number between 0 and 1.
+            let randomNumber = Math.random();
+            
+            // Turn that result into either 'Heads' or 'Tails':
+            let result;
+            if (randomNumber < 0.5) {
+                result = 'Tails';
+            } else {
+                result = 'Heads';
+            }
+
+            // Show the result on the coin on the page:
+            document.getElementById('coin').textContent = result;
+
+            // Edit the previous flips table:
+
+            // If the result was 'heads', add 1 to 'heads' result:
+            if (result === 'Heads') {
+                let headsTableCell = document.getElementById('heads-results');
+                let headsResultsAsText = headsTableCell.textContent;
+                let headsResultsAsANumber = parseInt(headsResultsAsText);
+                let headsResultsNewNumber = headsResultsAsANumber + 1;
+                headsTableCell.textContent = headsResultsNewNumber;
+            }
+
+            // If the result was 'tails', add 1 to 'tails' result:
+            if (result === 'Tails') {
+                let tailsTableCell = document.getElementById('tails-results');
+                let tailsResultsAsText = tailsTableCell.textContent;
+                let tailsResultsAsANumber = parseInt(tailsResultsAsText);
+                let tailsResultsNewNumber = tailsResultsAsANumber + 1;
+                tailsTableCell.textContent = tailsResultsNewNumber;
+            }
+        }
+
+    </script>
+
+</html>
